@@ -1,0 +1,5 @@
+com\controller\ProductController.class
+com\database\Products.class
+com\client\RestClient.class
+com\database\ProductDatabase.class
+com\controller\ProductService.class

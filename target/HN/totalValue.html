@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<script>
+function getTotalValue(){
+	
+	var response = this.responseText;
+	var result = document.getElementById("result");
+	result.innerHTML=response;
+	
+}
+
+function getTotalPrice(){
+	
+	var error = document.getElementById("error");
+	var result = document.getElementById("result");
+	error.innerHTML= null;
+	result.innerHTML= null;
+	
+	var value = document.getElementById("brandName").value;
+	
+	if(value==null || value==""){
+		
+		error.innerHTML="<p style='color:red';>Enter Brand Name</p>"
+		
+	}else{
+		
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = getTotalValue;
+		
+		xhttp.open("GET", "/RestProductProject/rest/products/totalvalue?productBrand="+value, true);
+		xhttp.send();
+	}
+}
+
+</script>
+<body>
+
+<label>Enter Brand Name </label><input type= "text" name="brandName" id="brandName"></input><button onclick="getTotalPrice();">Submit</button>
+
+<div id="error"></div>
+<div id="result"></div>
+
+
+</body>
+</html>

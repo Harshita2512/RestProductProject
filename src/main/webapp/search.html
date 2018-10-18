@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<script>
+
+function prodcutResult() {
+	
+	 var data = JSON.parse(this.responseText);
+	 var p2 = "<p>"+ data.productName + "<br>" 
+	 
+	 + data.productPrice + "<br>" 
+	 
+	 + data.productBrand +"</p>";
+	 document.getElementById("productD").innerHTML = p2;
+	 
+	 
+}
+
+
+function getProduct(){
+	var productid = document.getElementById("productid").value;
+	
+	
+	
+	if(productid == null || productid=="") {
+		
+		alert("Enter productid");
+		
+	} else {
+		
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = prodcutResult;
+		
+		xhttp.open("GET", "/RestProductProject/rest/products/"+productid, true);
+		xhttp.send();
+		  
+		
+		
+		  
+		}
+		
+}
+
+</script>
+<body>
+
+<input type="text" name="productid" id="productid">Search Product</input>
+
+<button  onclick="getProduct();">Submit</button>
+
+<div id="productD"></div>
+
+
+</body>
+</html>
